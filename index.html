@@ -43,32 +43,32 @@
 <script>
 	const fs = new Filer.FileSystem();
 	window.addEventListener("DOMContentLoaded", event => {
-	  fs.readFile("/mynote", "utf8", function(err, data) {
-		if (err) {
-		  document.querySelector("#mynote").innerHTML =
-			"Type your notes here. It will autosave.";
-		}
-		if (data) {
-		  document.querySelector("#mynote").innerHTML = data;
-		}
-	  });
-	  setInterval(writeToFile, 10000);
+		fs.readFile("/mynote", "utf8", function(err, data) {
+			if (err) {
+				document.querySelector("#mynote").innerHTML =
+					"Type your notes here. It will autosave.";
+			}
+			if (data) {
+				document.querySelector("#mynote").innerHTML = data;
+			}
+		});
+		setInterval(writeToFile, 10000);
 	});
-	
+
 	function clearText() {
-                document.querySelector("#note").innerHTML = "";
-            }
+		document.querySelector("#mynote").value = "";
+	}
 
 	function saveFile() {
-	  fs.writeFile(
-		"/mynote",
-		document.querySelector("#mynote").innerHTML,
-		"utf8",
-		function(err) {
-		  if (err) throw err;
-		}
-	  );
+		fs.writeFile(
+			"/mynote",
+			document.querySelector("#mynote").innerHTML,
+			"utf8",
+			function(err) {
+				if (err) throw err;
+			}
+		);
 	}
-  </script>
+</script>
 
 </html>
